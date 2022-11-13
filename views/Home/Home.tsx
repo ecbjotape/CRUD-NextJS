@@ -1,7 +1,11 @@
-import Input from "components/Input";
+import Header from "components/Header";
 import Layout from "components/Layout/Layout";
-import { useState } from "react";
-import { Button, Form, Header, ListContainer } from "./styles";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, userActions } from "state";
+import { User } from "types";
+import { ListContainer } from "./styles";
 
 const TitleHeader = [
   "nome",
@@ -12,29 +16,25 @@ const TitleHeader = [
 ];
 
 const Home = () => {
-  const [todos, setTodos] = useState([
-    {
-      name: "jotape",
-      email: "jp@mail.com",
-      phone: "000000",
-      birth: "29/01/2000",
-    },
-    {
-      name: "teste",
-      email: "jp@mail.com",
-      phone: "11111",
-      birth: "29/01/2000",
-    },
-  ]);
+  const users = useSelector((state: RootState) => state.users.Users);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
+  const navigateToAddUserScreen = () => {
+    router.push("/addUser");
+  };
+
+  const deleteUser = (user: User) => {
+    dispatch(userActions.deleteUser(user));
+  };
   return (
     <>
       <Header>one sight</Header>
       <Layout>
-        <Header>
-          Lista de usuários
-          <button>+</button>
-        </Header>
+        <Header>Lista de usuários</Header>
+        <button onClick={navigateToAddUserScreen} style={{ marginTop: 10 }}>
+          criar usuário
+        </button>
         <ListContainer>
           <thead>
             <tr>
@@ -44,18 +44,30 @@ const Home = () => {
             </tr>
           </thead>
           <tbody>
-            {todos.map((todo, index) => (
-              <tr key={index}>
-                <td>{todo.name}</td>
-                <td>{todo.email}</td>
-                <td>{todo.phone}</td>
-                <td>{todo.birth}</td>
-                <td>
-                  <Button>editar</Button>
-                  <Button>excluir</Button>
-                </td>
+            {users.length > 0 ? (
+              users.map((user: User, index: number) => (
+                <tr key={index}>
+                  <td>{user.name || "N/A"}</td>
+                  <td>{user.email || "N/A"}</td>
+                  <td>{user.phone || "N/A"}</td>
+                  <td>{user.birth || "N/A"}</td>
+                  <td>
+                    <Image
+                      src="/images/pencil.svg"
+                      alt="pencil"
+                      width={20}
+                      height={20}
+                      onClick={() => deleteUser(user)}
+                      style={{ cursor: "pointer" }}
+                    />
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={5}>Nenhum usuário cadastrado</td>
               </tr>
-            ))}
+            )}
           </tbody>
         </ListContainer>
       </Layout>

@@ -1,21 +1,5 @@
 import styled from "styled-components";
 
-interface HeaderProps {
-  size?: string;
-}
-export const Header = styled.header<HeaderProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-  font-size: ${(props) => (props.size ? props.size : "1.5rem")};
-  border-bottom: 2px solid #2b4c7e;
-  text-transform: lowercase;
-  font-weight: 700;
-  line-height: 2;
-  letter-spacing: 0.1rem;
-`;
-
 export const Button = styled.button`
   background: #eaeaea;
   border-radius: 5px;
@@ -44,13 +28,14 @@ export const ListContainer = styled.table`
     background: #eaeaea;
     border-bottom: 1px solid #eaeaea;
     padding: 10px 20px;
-    text-align: left;
+    text-align: center;
   }
 
   td {
     padding: 10px 20px;
     border-bottom: 1px solid #000;
     color: #000;
+    text-align: center;
   }
 
   tr {
