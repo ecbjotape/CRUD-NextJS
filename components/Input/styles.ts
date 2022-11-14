@@ -8,8 +8,8 @@ export const StyledInput = styled.input`
   background-color: transparent;
   outline: none;
   color: #000;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 14px;
+  padding: 0.2rem 0.5rem;
   cursor: pointer;
 
   &:focus {

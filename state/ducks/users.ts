@@ -28,6 +28,9 @@ const userSlice = createSlice({
         return user;
       });
     },
+    cleanList: (state) => {
+      state.Users = [];
+    },
   },
 });
 

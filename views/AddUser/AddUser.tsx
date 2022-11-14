@@ -3,7 +3,7 @@ import Header from "components/Header";
 import Input from "components/Input";
 import Layout from "components/Layout";
 import { useRouter } from "next/router";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, userActions } from "state";
 import { Form } from "./styles";
@@ -17,13 +17,36 @@ const AddUser = () => {
   const router = useRouter();
   const users = useSelector((state: RootState) => state.users.Users);
 
+  const param = router.query.id
+    ? users.find((user) => user.id === Number(router.query.id as string))
+    : null;
+
+  console.log(param);
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     dispatch(
-      userActions.addUser({ id: users.length + 1, name, email, phone, birth })
+      param
+        ? userActions.updateUser({ name, email, phone, birth, id: param.id })
+        : userActions.addUser({
+            id: users.length + 1,
+            name,
+            email,
+            phone,
+            birth,
+          })
     );
     router.push("/");
   };
+
+  useEffect(() => {
+    if (param) {
+      setName(param.name);
+      setEmail(param.email);
+      setPhone(param.phone);
+      setBirth(param.birth);
+    }
+  }, []);
 
   return (
     <>

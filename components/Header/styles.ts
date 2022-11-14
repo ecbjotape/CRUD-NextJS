@@ -14,5 +14,6 @@ export const HeaderStyled = styled.header<HeaderProps>`
   font-weight: 700;
   line-height: 2;
   letter-spacing: 0.1rem;
+  margin-bottom: 0.5rem;
   cursor: pointer;
 `;
