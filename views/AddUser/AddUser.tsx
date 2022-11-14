@@ -1,4 +1,5 @@
 import Button from "components/Button";
+import Container from "components/Container";
 import Header from "components/Header";
 import Input from "components/Input";
 import Layout from "components/Layout";
@@ -47,7 +48,7 @@ const AddUser = () => {
   }, []);
 
   return (
-    <>
+    <Container>
       <Header>one sight</Header>
       <Layout>
         <Header size="16px">Adicionar usuário</Header>
@@ -90,7 +91,7 @@ const AddUser = () => {
           <Button type="submit">adicionar</Button>
         </Form>
       </Layout>
-    </>
+    </Container>
   );
 };
 

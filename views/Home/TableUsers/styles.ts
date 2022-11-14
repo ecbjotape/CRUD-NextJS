@@ -104,6 +104,10 @@ export const Container = styled.div`
   justify-content: center;
   margin-top: 20px;
   width: 600px;
+
+  @media (max-width: 600px) {
+    width: 90%;
+  }
 `;
 
 export const DetailsUser = styled.div`
