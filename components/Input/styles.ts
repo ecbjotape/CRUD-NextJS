@@ -10,6 +10,7 @@ export const StyledInput = styled.input`
   color: #000;
   font-size: 14px;
   padding: 0.2rem 0.5rem;
+  font-weight: normal;
   cursor: pointer;
 
   &:focus {

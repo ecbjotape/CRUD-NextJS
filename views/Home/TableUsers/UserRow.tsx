@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { userActions } from "state";
 import { User } from "types";
+import { formatDate } from "utils";
 import { DetailsUser, DownIcon, PencilIcon, TrashIcon } from "./styles";
 
 interface UserRowProps {
@@ -45,7 +46,7 @@ const UserRow = ({ user, key }: UserRowProps) => {
             </div>
             <div>
               <p>telefone: {user.phone || "N/A"}</p>
-              <p>data de nascimento: {user.birth || "N/A"}</p>
+              <p>data de nascimento: {formatDate(user.birth) || "N/A"}</p>
             </div>
           </DetailsUser>
         )}

@@ -21,8 +21,6 @@ const AddUser = () => {
     ? users.find((user) => user.id === Number(router.query.id as string))
     : null;
 
-  console.log(param);
-
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     dispatch(
@@ -58,19 +56,24 @@ const AddUser = () => {
             label="Nome"
             type="text"
             id="name"
+            placeholder="Digite o nome do usuário"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
           <Input
             label="Email"
             type="email"
+            placeholder="Digite o email do usuário"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             label="Telefone"
-            type="text"
+            type="phone"
+            placeholder="(00) 00000-0000"
+            data-inputmask="'mask': '(99) 9999-9999'"
             id="phone"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
@@ -80,6 +83,7 @@ const AddUser = () => {
             type="date"
             id="birth"
             value={birth}
+            max={new Date().toISOString().split("T")[0]}
             onChange={(e) => setBirth(e.target.value)}
           />
 

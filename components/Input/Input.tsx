@@ -6,10 +6,16 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 const Input = ({ label, ...props }: InputProps) => {
   return (
-    <Label>
-      {label}
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "240px",
+      }}
+    >
+      <Label>{label}</Label>
       <StyledInput {...props} />
-    </Label>
+    </div>
   );
 };
 
