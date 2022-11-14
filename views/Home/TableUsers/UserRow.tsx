@@ -46,7 +46,7 @@ const UserRow = ({ user, key }: UserRowProps) => {
             </div>
             <div>
               <p>telefone: {user.phone || "N/A"}</p>
-              <p>data de nascimento: {formatDate(user.birth) || "N/A"}</p>
+              <p>data de nascimento: {formatDate(user.birth)}</p>
             </div>
           </DetailsUser>
         )}
